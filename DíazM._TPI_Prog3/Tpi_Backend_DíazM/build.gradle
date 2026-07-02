@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'com.tp.jpa'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Hibernate ORM (versión estable con soporte Jakarta)
+    implementation 'org.hibernate.orm:hibernate-core:6.4.4.Final'
+
+    // API de Jakarta Persistence
+    implementation 'jakarta.persistence:jakarta.persistence-api:3.1.0'
+
+    // Base de datos H2
+    implementation 'com.h2database:h2:2.2.224'
+
+    // Lombok (opcional, para simplificar getters/setters)
+    compileOnly 'org.projectlombok:lombok:1.18.32'
+    annotationProcessor 'org.projectlombok:lombok:1.18.32'
+
+    // JUnit para pruebas
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+}
+
+application {
+    // Clase principal con tu menú de consola
+    mainClass = 'com.tp.jpa.Main'
+}
+
+tasks.test {
+    useJUnitPlatform()
+}

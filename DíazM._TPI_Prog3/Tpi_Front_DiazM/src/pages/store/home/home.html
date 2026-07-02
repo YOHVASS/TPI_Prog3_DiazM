@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Store - Catálogo</title>
+    <!-- link al CSS global -->
+    <link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <h1>Food Store</h1>
+            <nav>
+                <a href="../cart/cart.html" class="nav-link">Catálogo | Carrito</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="layout-container">
+        <aside class="sidebar">
+            <h2>Categorías</h2>
+            <ul id="category-list">
+                <li class="active" data-category="todos">Todos los productos</li>
+                <li data-category="Pizzas">Pizzas</li>
+                <li data-category="Hamburguesas">Hamburguesas</li>
+                <li data-category="Empanadas">Empanadas</li>
+                <li data-category="Ensaladas">Ensaladas</li>
+                <li data-category="Choripán">Choripán</li>
+                <li data-category="Bebidas">Bebidas</li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <div class="search-box">
+                <input type="text" id="product-search" placeholder="¿Qué quieres comer hoy?">
+            </div>
+
+            <section id="products-grid" class="products-grid">
+                <!-- El TS inyectará los productos aquí -->
+            </section>
+        </main>
+    </div>
+
+
+    <div id="toast-container" class="toast-container"></div>
+
+    
+    <script type="module" src="./home.ts"></script>
+
+    
+</body>
+</html>

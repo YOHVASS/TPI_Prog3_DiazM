@@ -1,0 +1,26 @@
+<header class="main-header">
+    <link rel="stylesheet" href="../../../style.css">
+    <h1>FoodStore</h1>
+    <div class="header-actions">
+        <span>Catálogo</span>
+        <a href="../cart/cart.html">Carrito <span id="cart-count">0</span></a>
+    </div>
+</header>
+
+<div class="layout-container">
+    <aside class="sidebar">
+        <h3>CATEGORÍAS</h3>
+        <nav id="categories-menu">
+            <!-- Los botones de categorías se inyectan desde TS -->
+        </nav>
+    </aside>
+
+    <main class="content">
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Buscar productos...">
+        </div>
+        <div id="products-grid" class="grid">
+            <!-- Las cards se inyectan desde TS -->
+        </div>
+    </main>
+</div>

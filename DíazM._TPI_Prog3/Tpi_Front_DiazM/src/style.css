@@ -1,0 +1,798 @@
+
+
+
+/* ==========================================================================
+   1. CONFIGURACIÓN GLOBAL Y TIENDA (CLIENTE)
+   ========================================================================== */
+/* --- Configuración Global --- */
+:root {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: orange; /* Un gris más claro para resaltar las cards */
+  margin: 0;
+}
+
+body { margin: 0; color: #333; }
+
+/* --- Header --- */
+.main-header {
+  background-color: #1a3a3a;
+  color: white;
+  padding: 1rem 2rem;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.empty-message {
+    text-align: center;
+    padding: 40px;
+    color: #888;
+    font-style: italic;
+    font-size: 1.1rem;
+}
+/* --- Layout --- */
+.layout-container {
+  display: flex;
+  max-width: 1200px;
+  margin: 20px auto;
+  gap: 20px;
+  min-height: 80vh;
+  padding: 0 20px;
+}
+
+.sidebar {
+  width: 250px;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  height: fit-content;
+}
+
+#category-list { list-style: none; padding: 0; }
+#category-list li {
+  padding: 12px 15px;
+  cursor: pointer;
+  border-radius: 8px;
+  margin-bottom: 5px;
+  transition: 0.3s;
+}
+#category-list li:hover { background: #e9eeee; }
+#category-list li.active { background: #1a3a3a; color: white; }
+
+/* --- Productos --- */
+#product-search {
+  width: 100%;
+  padding: 12px 20px;
+  border: 1px solid #ccc4c4;
+  border-radius: 25px;
+  margin-bottom: 20px;
+  outline: none;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  background: rgb(233, 243, 187);
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.btn-add {
+  background: #1a3a3a;
+  color: rgb(224, 222, 222);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* --- Carrito --- */
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgb(204, 206, 209);
+  border-radius: 10px;
+}
+.cart-table th, .cart-table td { padding: 15px; border-bottom: 1px solid #eee; }
+
+/* --- Notificaciones --- */
+.toast-container {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.toast {
+  background-color: #1a3a3a;
+  color: rgb(222, 240, 181);
+  padding: 12px 25px;
+  border-radius: 50px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  animation: slideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.toast span {
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(120%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.toast.fade-out {
+  opacity: 0;
+  transform: translateX(120%);
+  transition: 0.4s;
+}
+
+/* --- Modal --- */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.modal-content {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+#btn-modal-ok {
+  background: #1a3a3a;
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .layout-container { flex-direction: column; }
+  .sidebar { width: 100%; }
+  .toast-container { right: 10px; bottom: 10px; left: 10px; }
+  .toast { justify-content: center; }
+}
+/* --- Contenedor de Productos --- */
+.products-grid {
+    display: grid; /* Activa el modo rejilla */
+    grid-template-columns: repeat(auto-fill, 180px); 
+    gap: 20px; /* Espacio entre productos */
+    justify-content: start; 
+    padding: 10px 0;
+}
+
+/* 1. Aseguramos que el layout principal permita que el contenido crezca */
+.layout-container {
+    display: flex;
+    max-width: 1400px; /* Aumentamos el ancho máximo para pantallas grandes */
+    margin: 20px auto;
+    gap: 30px;
+    padding: 0 20px;
+    align-items: flex-start;
+}
+
+.content {
+    flex: 1; 
+}
+
+.products-grid {
+    display: grid !important; 
+    grid-template-columns: repeat(auto-fill, 200px); 
+    gap: 20px;
+    justify-content: start; /* Alinea los productos al inicio de la fila */
+}
+
+/* 4. La Tarjeta */
+.product-card {
+    background: rgb(248, 202, 225);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    width: 200px; /* El mismo ancho que la columna del grid */
+    box-sizing: border-box;
+}
+
+/* 5. Imagen del producto  */
+.product-img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+/* --- RESPONSIVE  --- */
+@media (max-width: 768px) {
+    .layout-container {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+    }
+    .products-grid {
+        /* ancho de la pantalla */
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        justify-content: center;
+    }
+    .product-card {
+        width: auto;
+    }
+}
+/* --- Estructura del Layout --- */
+.layout-container {
+    display: flex;
+    max-width: 1200px;
+    margin: 20px auto;
+    gap: 30px;
+    padding: 0 20px;
+    /* Evita que el sidebar y el contenido se empujen mal */
+    align-items: flex-start; 
+}
+
+/* IMPORTANTE: El área de contenido debe ocupar todo el espacio restante */
+.content {
+    flex: 1; 
+    min-width: 0; /* Evita que el contenido desborde el flexbox */
+}
+
+.products-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, 200px); 
+    gap: 20px;
+    justify-content: start; /* Alinea la fila a la izquierda */
+}
+
+/* --- TARJETA DE PRODUCTO --- */
+.product-card {
+    background: white;
+    width: 200px; /* Ancho fijo para que coincida con el grid */
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box; /* Fundamental para que el padding no agrande la caja */
+    transition: transform 0.2s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+
+@media (max-width: 768px) {
+    .layout-container {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+    }
+    .products-grid {
+        
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        justify-content: center;
+    }
+    .product-card {
+        width: auto; 
+    }
+}
+/* Contenedor fijo en la esquina */
+.toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Estilo de la burbuja verde */
+.toast-aviso {
+    background-color: #28a745; /* Verde éxito */
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* Animación de entrada */
+    animation: slideIn 0.3s ease-out forwards;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* Clase para desaparecer */
+.fade-out {
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.5s ease;
+}
+/* Contenedor para alinear los botones a la derecha */
+.cart-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 25px;
+    padding-right: 10px;
+}
+
+/* Estética para el botón Vaciar Carrito */
+.btn-clear {
+    background-color: transparent; /* Fondo transparente para que no sea un bloque blanco */
+    color: #444; /* Gris muy oscuro para máxima legibilidad */
+    border: 2px solid #888; /* Borde sutil */
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.btn-clear:hover {
+    background-color: #fff1f0; /* Un toque rojizo muy suave al pasar el mouse */
+    border-color: #d93025; /* El borde se vuelve rojo aviso */
+    color: #d93025; /* El texto también cambia a rojo */
+}
+
+/* Estética para el botón Finalizar Compra (para que combine) */
+.btn-checkout {
+    background-color: #1a3a3a; /* El verde oscuro de tu marca */
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-checkout:hover {
+    background-color: green;
+}
+/* Contenedor de los botones + y - */
+.cantidad-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    background-color: #f8f9fa;
+    padding: 5px 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    width: fit-content;
+    margin: 0 auto; /* Centra el control en la celda */
+}
+
+/* Estilo común para los botones */
+.btn-cantidad {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: #1a3a3a;
+    transition: transform 0.1s ease;
+    padding: 0 5px;
+}
+
+.btn-cantidad:hover {
+    color: #ff6b6b; /* Color de énfasis al pasar el mouse */
+    transform: scale(1.2);
+}
+
+.cantidad-valor {
+    font-family: 'monospace';
+    font-weight: bold;
+    min-width: 20px;
+    text-align: center;
+}
+
+/* Botón eliminar */
+.btn-eliminar {
+    background-color: transparent;
+    color: #d9534f;
+    border: 1px solid #d9534f;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.btn-eliminar:hover {
+    background-color: #d9534f;
+    color: white;
+}
+/* Botón flotante en la esquina superior derecha */
+.btn-admin {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 8px 16px;
+    background-color: #555; /* Color gris para que no compita con el principal */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.btn-admin:hover {
+    opacity: 1;
+}
+
+
+
+
+/********************************************/
+/********************************************/
+   :root {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Fondo gris claro por defecto para el panel y vistas limpias */
+    --bg-admin: #f4f6f9; 
+    --orange-food: #e65100;
+}
+
+body { 
+    margin: 0; 
+    color: #333; 
+    background-color: #ffffff; /* Fondo base limpio */
+}
+
+/* --- Cambiamos el fondo de la Tienda si querías mantener el ocre ahí, 
+   o lo dejamos limpio. Para que el Admin funcione bien, el body no debe ser marrón entero --- */
+
+/* --- Header Tienda --- */
+.main-header {
+    background-color: #1a3a3a;
+    color: white;
+    padding: 1rem 2rem;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.empty-message {
+    text-align: center;
+    padding: 40px;
+    color: #888;
+    font-style: italic;
+    font-size: 1.1rem;
+}
+
+/* --- Layout Tienda --- */
+.layout-container {
+    display: flex;
+    max-width: 1400px;
+    margin: 20px auto;
+    gap: 30px;
+    padding: 0 20px;
+    align-items: flex-start;
+}
+
+.content {
+    flex: 1; 
+    min-width: 0;
+}
+
+/* --- Grid y Tarjetas de la Tienda --- */
+.products-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, 200px); 
+    gap: 20px;
+    justify-content: start;
+}
+
+.product-card {
+    background: rgb(248, 202, 225); /* Rosa de tu configuración */
+    width: 200px;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    transition: transform 0.2s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.btn-add {
+    background: #1a3a3a;
+    color: rgb(224, 222, 222);
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+/* --- Componentes Carrito Cliente --- */
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgb(204, 206, 209);
+    border-radius: 10px;
+}
+.cart-table th, .cart-table td { padding: 15px; border-bottom: 1px solid #eee; }
+
+.cantidad-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    background-color: #f8f9fa;
+    padding: 5px 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.btn-cantidad {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: #1a3a3a;
+    transition: transform 0.1s ease;
+    padding: 0 5px;
+}
+.btn-cantidad:hover { color: #ff6b6b; transform: scale(1.2); }
+.cantidad-valor { font-family: 'monospace'; font-weight: bold; min-width: 20px; text-align: center; }
+
+.btn-eliminar {
+    background-color: transparent;
+    color: #d9534f;
+    border: 1px solid #d9534f;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+.btn-eliminar:hover { background-color: #d9534f; color: white; }
+
+.cart-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 25px;
+    padding-right: 10px;
+}
+.btn-clear {
+    background-color: transparent;
+    color: #444;
+    border: 2px solid #888;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.btn-clear:hover { background-color: #fff1f0; border-color: #d93025; color: #d93025; }
+
+.btn-checkout {
+    background-color: #1a3a3a;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.btn-checkout:hover { background-color: green; }
+
+/* ==========================================================================
+   2. REGLAS ESPECÍFICAS PARA EL PANEL DE ADMINISTRACIÓN (IMÁGENES 7, 8 Y 9)
+   ========================================================================== */
+
+/* Cabecera Superior Blanca de las maquetas */
+.admin-header {
+    height: 65px;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.header-left { display: flex; align-items: center; gap: 10px; }
+.logo-text { font-weight: 700; font-size: 18px; color: var(--orange-food); }
+.header-right { display: flex; align-items: center; gap: 20px; }
+.btn-logout {
+    background-color: #e2e8f0;
+    color: #4a5568;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* Layout Admin Contenedor */
+.admin-layout {
+    display: flex;
+    background-color: var(--bg-admin); /* Forzamos el gris claro de fondo en el panel */
+    min-height: calc(100vh - 65px);
+}
+
+/* Sidebar lateral izquierdo impecable */
+.sidebar {
+    width: 260px;
+    background-color: #ffffff;
+    border-right: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+    box-shadow: none; /* Quitamos bordes raros */
+    height: auto;
+    border-radius: 0;
+}
+
+.sidebar-title { padding: 0 24px; margin-bottom: 20px; }
+.sidebar-title h3 { color: var(--orange-food); margin: 0; font-size: 15px; text-transform: uppercase; }
+.sidebar-title p { margin: 2px 0 0 0; color: #7f8c8d; font-size: 11px; }
+
+.sidebar-menu a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 24px;
+    color: #555;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+.sidebar-menu a:hover { background-color: #f8fafc; }
+.sidebar-menu a.active {
+    background-color: #f5f5f5;
+    color: var(--orange-food);
+    border-left: 4px solid var(--orange-food);
+    font-weight: 600;
+}
+.sidebar-footer { padding: 15px 24px; border-top: 1px solid #edf2f7; margin-top: auto; }
+
+/* Contenido de la derecha */
+.main-content {
+    flex-grow: 1;
+    padding: 40px;
+    background-color: var(--bg-admin);
+}
+
+/* --- Grilla de Estadísticas (Dashboard) --- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    margin-bottom: 35px;
+}
+.stat-card {
+    border-radius: 12px;
+    padding: 24px;
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+}
+.card-purple { background: linear-gradient(135deg, #6c5ce7, #a29bfe); }
+.card-pink { background: linear-gradient(135deg, #ff7675, #fd79a8); }
+.card-blue { background: linear-gradient(135deg, #74b9ff, #0984e3); }
+.card-green { background: linear-gradient(135deg, #55efc4, #00b894); }
+
+.stat-card h3 { margin: 0; font-size: 15px; font-weight: 500; }
+.stat-card p { margin: 10px 0; font-size: 36px; font-weight: bold; }
+.btn-card-manage {
+    display: inline-block; background: white; color: #333;
+    text-decoration: none; padding: 5px 12px; border-radius: 4px; font-size: 11px; font-weight: 600;
+}
+
+/* Secciones Blancas con Sombra */
+.shadow-card {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    border: 1px solid #e2e8f0;
+}
+.summary-header { padding: 15px 20px; border-bottom: 1px solid #edf2f7; }
+.summary-header h3 { margin: 0; color: #2c3e50; font-size: 16px; }
+.summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); padding: 20px; gap: 15px; }
+
+/* --- DISEÑO DE TABLAS (ADMIN CATEGORÍAS Y PRODUCTOS) --- */
+.table-container { overflow: hidden; background: #ffffff; border-radius: 10px; border: 1px solid #e2e8f0; }
+.admin-table { width: 100%; border-collapse: collapse; }
+.admin-table th { background-color: #ff7043; color: white; padding: 15px 20px; font-weight: 600; }
+.admin-table td { padding: 14px 20px; border-bottom: 1px solid #edf2f7; font-size: 14px; }
+
+/* Óvalo Verde Agua de Productos */
+.status-badge {
+    display: inline-block;
+    padding: 5px 14px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: bold;
+    background-color: #00bfa5;
+    color: white;
+}
+.product-thumbnail { width: 45px; height: 45px; object-fit: cover; border-radius: 6px; }
+
+/* ==========================================================================
+   3. TOASTS, MODALES Y RESPONSIVE RESIDUOS
+   ========================================================================== */
+.toast-container { position: fixed; bottom: 20px; right: 20px; z-index: 1000; display: flex; flex-direction: column; gap: 10px; }
+.toast-aviso { background-color: #28a745; color: white; padding: 12px 20px; border-radius: 8px; font-weight: bold; box-shadow: 0 4px 12px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 10px; animation: slideIn 0.3s ease-out forwards; }
+.fade-out { opacity: 0; transform: translateX(20px); transition: all 0.5s ease; }
+
+@keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+@media (max-width: 768px) {
+    .layout-container { flex-direction: column; }
+    .admin-layout { flex-direction: column; }
+    .sidebar { width: 100%; }
+    .products-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); justify-content: center; }
+    .product-card { width: auto; }
+}

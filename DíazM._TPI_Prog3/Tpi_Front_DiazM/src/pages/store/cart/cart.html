@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Carrito - Food Store</title>
+    <link rel="stylesheet" href="./cart.css"> <!-- Asegúrate de que el path sea correcto -->
+</head>
+<body>
+    <header>
+        <h1>Food Store</h1>
+        <nav>
+            <a href="../home/home.html" style="color: white; margin-right: 20px;">Catálogo</a>
+            <span>Mi Carrito 🛒</span>
+        </nav>
+    </header>
+
+    <main style="padding: 40px;">
+        <h2>Resumen de compra</h2>
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th style="text-align: center;">Cant.</th>
+                    <th>Subtotal</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="cart-items">
+                <!-- Se rellena dinámicamente desde cart.ts -->
+            </tbody>
+        </table>
+
+        <div class="cart-total-container" style="margin-top: 20px; text-align: right;">
+            <h3>Total: <span id="cart-total">$ 0</span></h3>
+            <button id="btn-empty">Vaciar Carrito</button>
+            <button id="btn-finish" style="background: #1a3a3a; color: white; padding: 10px;">Finalizar Compra</button>
+        </div>
+
+        <!-- Contenedor para notificaciones (Toasts) -->
+        <div id="toast-container" class="toast-container"></div>
+
+        <!-- Modal de Éxito -->
+        <div id="modal-success" class="modal-overlay">
+            <div class="modal-content">
+                <div class="icon-check">✓</div>
+                <h2>¡Compra finalizada con éxito!</h2>
+                <p>Gracias por elegir Food Store. Tu pedido ya está en camino.</p>
+                <button id="btn-modal-ok" class="btn-primary">Aceptar</button>
+            </div>
+        </div>
+
+        <!-- Modal de Confirmación para Vaciar -->
+        <div id="modal-confirm" class="modal-overlay">
+            <div class="modal-content">
+                <div class="icon-warning">⚠</div>
+                <h2>¿Estás seguro?</h2>
+                <p>Se eliminarán todos los productos del carrito.</p>
+                <div class="modal-actions">
+                    <button id="btn-confirm-yes" class="btn-primary">Sí, vaciar</button>
+                    <button id="btn-confirm-no" class="btn-secondary">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Script único para la lógica del carrito -->
+    <script type="module" src="./cart.ts"></script>
+</body>
+</html>

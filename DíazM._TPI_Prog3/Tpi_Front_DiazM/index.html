@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Store - Bienvenido</title>
+    <link rel="stylesheet" href="/src/style.css">
+    <style>
+        .admin-access {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            text-decoration: none;
+            border: 1px solid #bdc3c7;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        .admin-access:hover {
+            background-color: #eee;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <a href="/src/pages/auth/login/login.html" class="admin-access">Acceso Staff / Registro</a>
+
+    <div style="text-align: center; margin-top: 150px;">
+        <h1>Bienvenido a Food Store</h1>
+        <p>Tu comida favorita a un solo click.</p>
+        
+        <br>
+
+        <a href="/src/pages/store/home/home.html" 
+           id="btn-libre"
+           style="padding: 15px 30px; background: #7a400c; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">
+            Ingresar al Catálogo
+        </a>
+    </div>
+    
+    <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

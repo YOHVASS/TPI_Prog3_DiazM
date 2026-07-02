@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Nuevo Producto</title>
+  <link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+
+  <header class="admin-header">
+    <div class="header-left">
+      <span class="logo-icon">🍕</span>
+      <span class="logo-text">Food Store</span>
+    </div>
+    <div class="header-right">
+      <a href="../../store/home/home.html" class="nav-link">Tienda</a>
+      <a href="../home/home.html" class="nav-link">Panel Admin</a>
+      <span class="nav-link disabled">Admin Sistema</span>
+      <button id="logoutButton" class="btn-logout">Cerrar Sesión</button>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="form-container shadow-card">
+      <h3>✨ Registrar Nuevo Producto</h3>
+      <form id="addProductForm" class="admin-form">
+        
+        <div class="form-group">
+          <label for="prodNombre">Nombre del Producto *</label>
+          <input type="text" id="prodNombre" required placeholder="Ej: Hamburguesa con Queso">
+        </div>
+
+        <div class="form-group">
+          <label for="prodDescripcion">Descripción *</label>
+          <textarea id="prodDescripcion" required placeholder="Detallá los ingredientes o características..."></textarea>
+        </div>
+
+        <div class="form-group-row">
+          <div class="form-group">
+            <label for="prodPrecio">Precio ($) *</label>
+            <input type="number" id="prodPrecio" step="0.01" min="0" required placeholder="0.00">
+          </div>
+          
+          <div class="form-group">
+            <label for="prodStock">Stock Inicial *</label>
+            <input type="number" id="prodStock" min="0" required placeholder="0">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="prodCategoria">Categoría *</label>
+          <select id="prodCategoria" required>
+            <option value="" disabled selected>Seleccioná una categoría</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="prodImagen">URL de la Imagen (Opcional)</label>
+          <input type="url" id="prodImagen" placeholder="https://ejemplo.com/foto.jpg">
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn-secondary" onclick="window.history.back()">Cancelar</button>
+          <button type="submit" class="btn-primary">Guardar Producto</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <!-- Script al final del body -->
+  <script type="module" src="./addProduct.js"></script>
+</body>
+</html>

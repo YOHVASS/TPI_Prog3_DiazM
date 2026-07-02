@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "nombre": "Pizza Napolitana",
+    "precio": 8500,
+    "descripcion": "Salsa de tomate, mozzarella, tomate fresco y ajo.",
+    "stock": 25,
+    "imagen": "./img/Napolitana.jpg",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 2
+  },
+  {
+    "id": 2,
+    "nombre": "Pizza Mozzarella",
+    "precio": 7000,
+    "descripcion": "Clásica mozzarella artesanal.",
+    "stock": 25,
+    "imagen": "/img/pizza.jpg",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 2
+  },
+  {
+    "id": 3,
+    "nombre": "Hamburguesas Carne",
+    "precio": 6500,
+    "descripcion": "Medallón vacuno premium.",
+    "stock": 30,
+    "imagen": "/img/hamburguesa.jpg",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 1
+  },
+  {
+    "id": 4,
+    "nombre": "Hamburguesas Vegana",
+    "precio": 6800,
+    "descripcion": "Medallón de legumbres y vegetales.",
+    "stock": 20,
+    "imagen": "/img/vegana.jpg",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 1
+  },
+  {
+    "id": 5,
+    "nombre": "Empanadas de Pollo",
+    "precio": 9000,
+    "descripcion": "Docena de pollo cortado a cuchillo.",
+    "stock": 80,
+    "imagen": "/img/pollo.jpg",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 3
+  },
+  {
+    "id": 6,
+    "nombre": "Ensalada Caesar",
+    "precio": 5500,
+    "descripcion": "Pollo grillado, crutones y aderezo.",
+    "stock": 15,
+    "imagen": "/img/ensalada.jpg",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 5
+  },
+  {
+    "id": 7,
+    "nombre": "Agua Mineral",
+    "precio": 1500,
+    "descripcion": "500ml natural.",
+    "stock": 300,
+    "imagen": "/img/agua.jpg",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 4
+  },
+  {
+    "id": 8,
+    "nombre": "Gaseosa Cola",
+    "precio": 2200,
+    "descripcion": "Sabor original 500ml.",
+    "stock": 200,
+    "imagen": "/img/cola.jpg",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 4
+  },
+  {
+    "id": 9,
+    "nombre": "Choripán",
+    "precio": 6800,
+    "descripcion": "Tipo Salchicha grande de carne con Salsa criolla en pan.",
+    "stock": 40,
+    "imagen": "/img/choripan.jpg",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 5
+  },
+  {
+    "id": 10,
+    "nombre": "Licuado de Fruta",
+    "precio": 3200,
+    "descripcion": "Fruta de estación con agua o leche.",
+    "stock": 50,
+    "imagen": "/img/Licuados.jpg",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 4
+  }
+]

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nueva Categoría</title>
+  <!-- Importa SOLO el CSS del formulario -->
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="form-container">
+    <h3>✨ Registrar Nueva Categoría</h3>
+    <form id="addCategoryForm" class="admin-form">
+      <label for="catNombre">Nombre de la categoría *</label>
+      <input type="text" id="catNombre" required>
+
+      <div class="form-actions">
+        <button type="button" class="btn-secondary" onclick="window.history.back()">Cancelar</button>
+        <button type="submit" class="btn-primary">Guardar Categoría</button>
+      </div>
+    </form>
+  </div>
+
+ 
+</body>
+
+<link rel="stylesheet" href="./style.css">
+<script type="module" src="./newCat.js"></script>
+</html>
